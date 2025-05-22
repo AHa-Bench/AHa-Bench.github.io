@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="AHa-Bench: Benchmarking Audio Hallucinations in Large Audio-Language Models">
+  <meta property="og:title" content="MMAU"/>
+  <meta property="og:description" content="AHa-Bench: Benchmarking Audio Hallucinations in Large Audio-Language Models"/>
+  <!-- <meta property="og:url" content="https://sakshi113.github.io/mmau_homepage/"/> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" /> -->
+  <!-- <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/> -->
+
+
+  <meta name="twitter:title" content="MMAU">
+  <meta name="twitter:description" content="MMAU">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/mmau_logo.png"> -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>AHa-Bench: Benchmarking Audio Hallucinations in Large Audio-Language Models</title>
+  <link rel="icon" type="image/x-icon" href="static/images/mmau_logo.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero is-light" style="background: linear-gradient(135deg, #6a11cb 0%, #fcc625 100%);">
+  <div class="hero-body" style="padding: 1rem 0;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- Main Title with Animation -->
+          <h1 class="title is-2 publication-title" style="font-family: 'Roboto', sans-serif; color: #ffffff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+            <span class="mmmu" style="font-weight: bold; font-size: 3.5rem;">AHa-Bench</span>
+          </h1>
+
+          <!-- Subtitle with Custom Styling -->
+          <h2 class="subtitle is-4 publication-subtitle" style="font-family: 'Lora', serif; color: #ffffff; font-weight: 400; letter-spacing: 1px;">
+            Benchmarking Audio Hallucinations in Large Audio-Language Models
+          </h2>
+
+          <!-- Meta Description -->
+          <meta name="description" content="Benchmarking Audio Hallucinations in Large Audio-Language Models">
+
+          <!-- Button for GitHub Link -->
+          <a href="https://github.com/AHa-Bench/AHa-Bench" target="_blank" class="button is-primary is-large" style="margin-top: 15px; background-color: #000000; color: white; border-radius: 30px; font-size: 1.1rem; display: inline-block; width: 13%; text-align: center;">
+            <span class="icon" style="vertical-align: middle;">
+              <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+              </svg>
+            </span>
+            <span>Code</span>
+          </a>
+
+          <!-- Button for Hugging Face Link -->
+          <a href="https://huggingface.co/datasets/ahabench/AHa-Bench" target="_blank" class="button is-primary is-large" style="margin-top: 15px; background-color: #000000; color: white; border-radius: 30px; font-size: 1.1rem; display: inline-block; width: 13%; margin-right: 2%; text-align: center;">
+            🤗 Dataset
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Optional for further enhancement -->
+<style>
+  .hero {
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .publication-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    animation: fadeInUp 1.5s ease-in-out;
+  }
+
+  .publication-subtitle {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .button.is-primary {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .button.is-primary:hover {
+    background-color: #00d1b2;
+    transform: translateY(-3px);
+  }
+
+  /* Animation for Fade-In */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Hallucinations present a significant challenge in the development and evaluation of large language models (LLMs), directly affecting their reliability and accuracy. While notable advancements have been made in research on textual and visual hallucinations, there is still a lack of a comprehensive benchmark for evaluating auditory hallucinations in large audio language models (LALMs). To fill this gap, we introduce AHa-Bench, a systematic and comprehensive benchmark for audio hallucinations. Audio data, in particular, uniquely combines the multi-attribute complexity of visual data with the semantic richness of textual data, leading to auditory hallucinations that share characteristics with both visual and textual hallucinations. Based on the source of these hallucinations, AHa-Bench categorizes them into semantic hallucinations, acoustic hallucinations, and semantic-acoustic confusion hallucinations. In addition, we systematically evaluate seven open-source local perception language models (LALMs), demonstrating the challenges these models face in audio understanding, especially when it comes to jointly understanding semantic and acoustic information. Through the development of a comprehensive evaluation framework, AHa-Bench aims to enhance the robustness and stability of LALMs, fostering more reliable and nuanced audio understanding in LALMs.
+          </p>
+          <!-- Center the image by setting display to block -->
+          <div style="text-align: center;">
+            <img src=".static/pngs/data.png" style="max-width: 80%; height: auto; display: block; margin-left: auto; margin-right: auto;" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mmmu">
+      <span class="mmmu">AHa-Bench Cases</span>
+    </h1>
+  </div>
+</section>
+    
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+
+            <!-- Category selection -->
+<!--      <div class="column is-full">-->
+<!--        <div class="select">-->
+<!--          <select id="categorySelector" onchange="showCategory()">-->
+<!--            <option value="sourceNumber">Source Number</option>-->
+<!--            <option value="duration">Duration</option>-->
+<!--            <option value="existence">Existence</option>-->
+<!--            <option value="inferredSound">Inferred Sound</option>-->
+<!--            <option value="homophone">Homophone</option>-->
+<!--            <option value="prosodic">Prosodic</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
+      <!-- Category selection with subcategories -->
+      <div class="column is-full">
+        <div class="select">
+          <select id="categorySelector" onchange="showCategory()">
+            <!-- First category group -->
+            <optgroup label="Semantic Hallucination">
+              <option value="homophone">Homophone</option>
+              <option value="prosodic">Prosodic</option>
+              <option value="knowledge">Knowledge</option>
+              <option value="polysemy">Polysemy</option>
+              <option value="Instruction">Instruction</option>
+
+
+
+            </optgroup>
+
+            <!-- Second category group -->
+            <optgroup label="Acoustic Hallucination">
+              <option value="sourceNumber">Source Number</option>
+              <option value="duration">Duration</option>
+              <option value="existence">Existence</option>
+              <option value="distance">Distance</option>
+              <option value="repetition">Repetition</option>
+              <option value="temporal sequence">Temporal</option>
+              <option value="Authenticity">Authenticity</option>              
+              
+              
+            </optgroup>
+
+            <optgroup label="Semantic-Acoustic Confusion Hallucination">
+              <option value="inferredSound">Inferential from acoustic information</option>
+              <option value="inferred Sound">Inferential from semantic information</option>
+              <option value="overreliance">Overreliance</option>
+              
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div id="Authenticity" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/Authenticity/2.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does this audio feature human-voiced imitations of bassoon?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，这段音频是人声模仿的巴松音效。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the audio features the sound of an actual bassoon, not a human-voiced imitation. The timbre and sustained note are characteristic of the instrument itself.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/Authenticity/23.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does this audio feature human-voiced imitations of car alarm?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，这段音频包含人类模仿的汽车警报声。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the whistling sounds at the beginning (approximately 0:00-0:04) are human-voiced imitations of a car alarm. The sound that follows is a synthetic electronic tone.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/Authenticity/13.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does this audio feature human-voiced imitations of bassoon?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  I can't play the bassoon, but I can definitely help you with questions about it! What would you like to know?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the first sound in the audio (from 0:00 to approximately 0:01) appears to be a human voice imitating a bassoon. The second sound (from approximately 0:02 to 0:03) is a synthesized instrument, not a vocal imitation.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/Authenticity/50.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does this audio feature human-voiced imitations of dog bark?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, this audio features human-voiced imitations of dog barks. It sounds like it's trying to mimic the sound of a dog barking.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the audio features sounds that are characteristic of **actual dog barks**, not human imitations.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+        <!-- Category tables -->
+    <div id="sourceNumber" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/source_number/4.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Are there 3 people talking in this audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, there are three people talking in this audio.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, it sounds like there are **two** people talking.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/source_number/8.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Are there 3 violins playing in this audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，这段音频中有三把小提琴在演奏。你能听到它们在音乐中交织，形成丰富的和声。是不是感觉很有层次感呢？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Based on the harmonic richness and texture, yes, it sounds very likely that there are three violins playing, or at least three distinct violin parts contributing to the sound.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/source_number/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Are there 3 people talking in this audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Oh, got it! So there are three people talking in this audio. That makes sense. Is there anything else you'd like to know?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, it sounds like there are three distinct voices:
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/source_number/15.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Are there 5 brass instruments being played in this audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，这段音频中有五种铜管乐器在演奏。你能听出哪些乐器吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, it sounds very much like a standard brass quintet.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="distance" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/distance/14.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the train sound like it's moving from near to far?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The train sound is moving from far to near.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the train sound definitely gives the impression of moving from near to far.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/distance/6.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the train sound like it's moving from far to near?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，听起来火车是从远处慢慢开近的。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, it sounds like the train is moving from **near to far**. The volume of the train sounds decreases significantly throughout the clip, and the sounds become less distinct, which are typical cues for an object moving away from the listener.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/distance/2.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the car sound like it's moving from far to near?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, it does! It starts off distant and then gets closer, as if the car is approaching.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, it sounds more like an emergency vehicle (with a siren) starts very close and loud, then moves away or passes by quickly.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/distance/15.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the train in the audio stay in place?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The train in the audio is moving forward.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the train does not stay in place. Around 0:04-0:06, you can clearly hear the hiss of air brakes releasing, which is immediately followed by sounds indicating the train is starting to move.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="repetition" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/repetition/16.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the goat bark a total of 3 times in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The goat barks a total of 5 times in the audio.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the goat does not bark. It makes a bleating sound (or baa) 3 times in the audio.
+                </td>
+              </tr>
+
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/repetition/7.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the bell ring a total of 3 times in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the bell rings a total of 3 times in the audio. 
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, it does not.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/repetition/2.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the bell ring a total of 2 times in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The bell rings 6 times in the audio clip.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the bell rings a total of 2 times in the audio. The first ring is at the very beginning (around 0:00) and the second is around 0:04.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/repetition/8.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the cat meow a total of 3 times in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The cat meows a total of 3 times in the audio.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the cat meows twice.
+                </td>
+              </tr>
+              
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="temporal sequence" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/temporal sequence/0.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the gunshot occur after the person speaks?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The gunshot occurs after the person speaks.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the gunshot (or a very similar loud percussive sound) occurs at the very beginning of the video (around 0:00), and the person starts speaking around 0:03-0:04. So, the gunshot occurs *before* the person speaks.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/temporal sequence/22.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the roaring of the animal occur after the melodious singing of people?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The roaring of the animal does not occur after the melodious singing of people.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The roaring of the animal occurs **before** the melodious singing of people. The roaring is heard from the beginning of the audio until about 0:04, and the singing starts around 0:05.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/temporal sequence/25.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the man converse after the mooing of the cow?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The man does not continue his conversation after the cow moos.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, a man starts speaking at approximately 0:02, immediately after the cow moos (which occurs from 0:00 to 0:02).
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/temporal sequence/11.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the man's conversation occur after the barking of the dog?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the man's conversation occurs after the barking of the dog. We can hear the dog barking, then a pause, and then the man starts speaking.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, the man's conversation starts **after** the dog barks. The dog barks at the very beginning of the audio, and then the man starts speaking around the 0:02 mark.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="duration" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/duration/7.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Does the guitar in the audio last for less than 6 seconds?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，这段音频的吉他演奏时间少于六秒。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    The answer is yes.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the guitar plays for longer than 6 seconds. It starts around 0:04 and continues playing beyond the 0:09 mark shown in the waveform, which means it's at least 5 seconds long, and it sounds like it continues a bit after that.
+                </td>
+              </tr>
+            <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/duration/18.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> Does the guitar in the audio last for less than 8 seconds?
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                yes
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                It sounds like a B flat. It's a bit low, but not by much.
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the guitar in the audio lasts for more than 8 seconds.
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                Yes, the guitar sound lasts for less than 8 seconds.
+              </td>
+            </tr>
+            <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/duration/14.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> Does the guitar in the audio last for less than 7 seconds?
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                yes
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                是的，这个图表很容易阅读，也很明亮。它似乎工作得很好。
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                Yes, the guitar sounds in the audio last for less than 7 seconds.
+              </td>
+            </tr>
+            <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/duration/19.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> Does the car in the audio last for more than 5 seconds?
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                no
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                是的，汽车的声音持续了超过五秒钟。
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                Yes, there is a car sound that lasts for more than 5 seconds.
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+            <!-- Category tables -->
+    <div id="existence" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/existence/3.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Is there a cat in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，音频中有猫的叫声。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, there does not appear to be a cat in the audio. The sounds are more characteristic of a dog, such as growling and barking.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/existence/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Is it raining in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  根据音频内容，外面正在下雨。你听到雨声了吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   The answer is no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, it does not sound like it is raining in the audio. The primary sounds are of frogs croaking.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/existence/32.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Is there a violin in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, there is a violin in the audio. It adds a beautiful, melodic touch to the track.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, a violin is not present in the audio. The instrument playing sounds like a cello or a double bass, which are larger string instruments with a lower pitch than a violin.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/existence/21.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Is there a drum in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, there is a drum in the audio. It adds a rhythmic element to the sound, making it more interesting and dynamic.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, there is a drum present in the audio. You can hear a snare drum hit around 0:02 and a full drum kit playing a beat starting around 0:07.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+            <!-- Category tables -->
+    <div id="inferredSound" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/inferred sound/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Is there the word 'wind' in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，音频中有提到 'wind' 这个单词。它在大约1分08秒左右出现。你听到了吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The audio contains sounds that resemble rumbling or mechanical noises, but the word "wind" is not spoken.
+                </td>
+              </tr>
+
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/inferred sound/11.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Is there the word 'dog' in the audio?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，音频中有提到“dog”这个词。它在大约0秒08秒的时候出现。听听看，是不是这样？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The audio contains barking sounds and some human speech at the end ("Yeah, are you going to..."). However, the word "dog" is not spoken in the audio.
+                </td>
+              </tr>
+               <tr style="height: 120px;">
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    <audio controls controlslist="nodownload" class="px-1">
+                      <source src="./static/wav_files/inferred sound/12.wav" type="audio/wav">
+                      Your browser does not support the audio element.
+                    </audio>
+                    <br><br> <b>Question:</b> Is there the word 'guitar' in the audio?
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    no
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    是的，音频中有提到吉他。你听到了吗？
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    Yes
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    The word "guitar" is not present in the audio. However, the audio does feature the sound of a guitar playing.
+                  </td>
+                </tr>
+                <tr style="height: 120px;">
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    <audio controls controlslist="nodownload" class="px-1">
+                      <source src="./static/wav_files/inferred sound/5.wav" type="audio/wav">
+                      Your browser does not support the audio element.
+                    </audio>
+                    <br><br> <b>Question:</b> Is there a sound of wind in the audio?
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    yes
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    Yes, there is a sound of wind in the audio.
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    No
+                  </td>
+                  <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                    The audio primarily contains a rumbling sound, which might be mistaken for wind, but there is no clear or distinct sound of wind present. Therefore, it is unlikely that there is a significant wind sound in the audio.
+                  </td>
+                </tr>
+
+
+              
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+            <!-- Category tables -->
+    <div id="homophone" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/homophone_zh-en/4.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> 句中是否包含'富士'？
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                是
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                富士山确实很美，它是日本最高的山峰，也是一座休眠火山。从远处看，它的山顶经常被云雾笼罩，显得非常神秘。很多游客会去登山或者从不同的角度欣赏它的美景。
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                 no
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                是的，句中包含“富士”。
+              </td>
+            </tr>
+            <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/homophone_en-en/15.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> Does the sentence mention 'peace'?
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                no
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                Sure! Enjoy a piece of our cake. It's delicious!
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                 no.
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                No, the sentence mentions "piece" (as in a piece of cake), not "peace" (as in tranquility).
+              </td>
+            </tr>
+            <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/homophone_en-en/9.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> Does the sentence mention 'bare'?
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                no
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                The sentence doesn't mention 'bare.' It says, 'A bear was wandering in the forest.'
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                 yes
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                No, the sentence mentions "bear" (the animal), not "bare".
+              </td>
+            </tr>
+            <tr style="height: 120px;">
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                <audio controls controlslist="nodownload" class="px-1">
+                  <source src="./static/wav_files/homophone_zh-zh/8.wav" type="audio/wav">
+                  Your browser does not support the audio element.
+                </audio>
+                <br><br> <b>Question:</b> 句子中是否提到'意思'的'意'？
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                否
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                '意'这个字有很多意思，比如：意思，意义，意图，意志，意念，意境，意气，意想，意会，意指。在中文里，它常常用来表达说话者的意图或思想。你想了解哪个意思呢？
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                 yes
+              </td>
+              <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                句子中没有提到“意思”的“意”。句子中提到的是“含义”的“义”，它的发音和“意”相同，但字形不同。
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="knowledge" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/knowledge_en/10.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> According to the audio, is Earth a planet?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Oh, I think you might be referring to the moon! Earth is actually a planet in our solar system, orbiting the sun. The moon, on the other hand, is Earth's only natural satellite. Systematic errors like this are pretty common, but it's fun to correct them!
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The audio states that "Earth is a satellite of the Sun." It does not explicitly say whether Earth is a planet.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/knowledge_en/11.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> According to the audio, is Earth a planet?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，地球是一颗行星。它位于太阳系内，是太阳系八大行星之一。地球表面有71%被水覆盖，其余部分是陆地。地球是唯一已知存在生命星球的地方，也是我们人类的家园。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes, according to the audio, Earth is a planet.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/knowledge_zh/8.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据语音，巴黎是意大利的城市吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  巴黎是法国的首都，位于法国北部。它不是意大利的城市。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  根据语音，是的，语音中说“巴黎是意大利的城市”。
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/knowledge_zh/9.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据语音，巴黎是法国的城市吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  对，巴黎是法国的首都。它不仅是一个政治和文化中心，还以丰富的历史、艺术和时尚而闻名。你喜欢巴黎吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，根据语音，巴黎是法国的城市。
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="overreliance" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/overreliance_en/0.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the voice timbre, is the speaker male?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Oh, hi there! It's great to hear from you. How can I assist you today?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Based on the voice timbre and the speaker's statement "I am a girl," the speaker is **not male**. The voice has a higher pitch and lighter quality, which is characteristic of a female voice.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/overreliance_en/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the voice timbre, is the speaker a child?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Wow, that's fascinating! Old people often have a rich and warm tone to their voice, full of life experiences. How can I help you today?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  The voice has a higher pitch and a lighter quality, which can sometimes be associated with a child's voice. However, the speaker explicitly states, "I am a very old person."Therefore, based on the speaker's own statement, they are not a child, despite any qualities in the timbre that might sound youthful.
+
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/overreliance_zh/0.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据语音音色，是男生在讲话吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  哦，原来如此！那你的声音听起来很特别，是有什么特别的原因吗？还是天生就这样？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  不是，根据语音音色和内容，是女生在讲话。说话者自己也说了“我是女生”。
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/overreliance_zh/6.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据语音音色判断，是老人在讲话吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  否
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  你好呀，小朋友！有什么我可以帮你的吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  no
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  根据语音音色判断，**不是**老人在讲话。
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="polysemy" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/polysemy_en/1.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the audio, does the first 'can' mean 'to preserve food in a can'?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Sure! If you're asking whether someone can perform the task of canning food in a can, the answer would be no. Canning is typically done by sealing food in glass jars, not metal cans. But if you meant to ask if someone can open a can, then the answer is definitely yes! Canners are tools specifically designed for opening cans.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the first 'can' is an auxiliary verb used to ask about ability, as in "Are you able to...".
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/polysemy_en/7.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the audio, does the first 'watch' mean a timepiece worn on the wrist?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  I don't have a watch, but if I did, I'd probably use it to check the time while watching my favorite show! What about you? Do you have a favorite watch?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the first 'watch' is a verb meaning to observe or pay attention to. The phrase "your watch" (the second 'watch') refers to the timepiece.
+                </td>
+              </tr>
+
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/polysemy_zh/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据文本，第二个 “意思” 是 “趣味、吸引力” 的意思吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  否
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  老师讲的内容很有意思，但我一时没听明白她的意思。这句话中的“意思”是“含义”或“意思”的意思。意思就是说，老师讲的内容很有趣，但我还没完全理解她的意思。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  根据文本：
+                  *   第一个“意思”（在“很有意思”里）是“趣味、吸引力”的意思。
+                  *   第二个“意思”（在“他的意思”里）是指“含义、意图、想法”。
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/polysemy_zh/4.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据文本，第二个“长”字是“长度大、距离长”的意思吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  对，这里的“长”是指头发很长，长度大。这是一种描述头发特征的说法。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，第二个“长”字在这里读作 **cháng**（第二声），意思是“**长度大**”，形容头发的长度。
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="Instruction" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/asr_en/4.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Please transcribe the audio into text.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Please name your favorite book.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  我没有个人偏好，但有很多经典的书籍非常受欢迎，比如《百年孤独》、《傲慢与偏见》、《哈利·波特》系列等等。你有特别喜欢的书吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  please name your favorite book.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Please name your favorite book.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/asr_en/0.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Please transcribe the audio into text.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Can you tell me what time it is now?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  抱歉，我无法提供当前时间。 你可以查看你的设备上的时间。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  can you tell me what time it is now?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Can you tell me what time it is now?
+                </td>
+              </tr>
+
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/asr_zh/9.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 请将音频转录为文本
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  请用中文朗读下面这句话。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  好的，请告诉我您想让我朗读的句子。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  请用中文朗读下面这句话
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  请用中文朗读下面这句话。
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/asr_zh/4.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 请将音频转录为文本
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  请说出你最喜欢的一本书。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  我没有个人偏好，但可以和你聊聊各种书籍的主题和风格。你有没有特别喜欢的书或者最近在看的书呢？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  请说出你最喜欢的一本书
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  请说说你最喜欢的一本书。
+                </td>
+              </tr>
+
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="homophone" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="inferred Sound" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/inferredsound_zh/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据音频内容，是否出现了掌声？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  否
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  哇，听起来真棒！观众的掌声就是对演讲最好的肯定啊！这种时刻一定特别令人激动！你有没有经历过类似的场景呢？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  音频内容描述了掌声（“观众热烈鼓掌”），但音频本身是旁白，并未实际包含掌声的声音。
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/inferredsound_en/3.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the audio, is there cat meowing?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Oh, that sounds like quite the experience! Cats can be quite vocal, especially when they want something. Are you able to figure out what the cat might be trying to tell you?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Based on the audio, it mentions a cat "mowing," not "meowing." So, no, there is no cat meowing described in the audio.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/inferredsound_zh/1.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据音频内容，是否出现了狗叫声？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  否
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  哈哈，听起来你的小狗可能有点调皮哦！有时候它们也会在不经意间带来一些惊喜。你平时是怎么和它相处的呢？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，音频内容提到了狗叫声。说话人说“我们的狗又在叫了”。
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/inferredsound_zh/2.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据音频内容，是否出现了“哭”这个词？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  听起来有点烦人啊。希望邻居家的孩子早点冷静下来。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，音频中出现了“哭”这个词。在“邻居家的孩子一直在哭”这句话中。
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+            <!-- Category tables -->
+    <div id="prosodic" class="category-content">
+      <!-- Source Number Table -->
+      <div class="box" style="border: 2px solid #ddd; padding: 20px;">
+        <div class="table-responsive">
+          <table class="table is-bordered is-striped" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Answer</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">GLM-4-Voice</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Qwen2-Audio</th>
+                <th style="text-align: center; font-weight: bold; padding: 10px;">Gemini 2.5 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/prosodic_en/11.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the audio, did the observer have the telescope?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Ah, so the observer saw the man with the telescope. It sounds like they were quite a sight! Did you catch a glimpse of what he was looking at?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  No, the observer saw a man who had the telescope. The observer did not have the telescope.
+                </td>
+              </tr>
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/prosodic_en/10.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> Based on the audio, did the observer have the telescope?
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  It sounds like you saw the man with the telescope.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  Based on the audio, the observer **saw** the man with the telescope, not that the observer themselves had the telescope.
+                </td>
+              </tr>
+
+
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/prosodic_zh/5.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据语音，是你和他都必须说话吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  否
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  嗯，有时候确实需要表达自己的观点。不过，沟通的时候，理解和倾听也很重要。你觉得呢？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  根据语音，不是两个人（你和他）都必须说话。
+                </td>
+              </tr>
+
+              <tr style="height: 120px;">
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  <audio controls controlslist="nodownload" class="px-1">
+                    <source src="./static/wav_files/prosodic_zh/4.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <br><br> <b>Question:</b> 根据语音，是你和他都必须说话吗？
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  嗯，我明白你的意思。不过在这个场景里，他可能不需要说话，只要保持安静就可以了。不过，如果需要他回应，他也可以简单说几句。
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                   yes.
+                </td>
+                <td style="text-align: center; vertical-align: middle; padding: 15px;">
+                  是的，根据语音内容：是你（被要求说的人）和他都必须说话。
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  function showCategory() {
+    const selectedCategory = document.getElementById("categorySelector").value;
+    const categories = document.querySelectorAll(".category-content");
+
+    // Hide all categories first
+    categories.forEach(category => {
+      category.style.display = "none";
+    });
+
+    // Show the selected category
+    document.getElementById(selectedCategory).style.display = "block";
+  }
+
+  // Initialize the category view on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    showCategory();
+  });
+</script>
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
